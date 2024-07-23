@@ -4,9 +4,9 @@ export default function Home() {
     // some dummy data
 
     const blogpost = [
-        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+        { title: 'My new website', body: 'lorem ipsum...', author: 'Marouane', id: 1 },
+        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'Fatima', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Marouane', id: 3 }
       ]
     const [blogs, setBlogs] = useState(blogpost)
     return (
@@ -15,7 +15,7 @@ export default function Home() {
         {blogs.map((post) => (
             <div className='blog-preview' key={post.id}>
                 <h2>{post.title}</h2>
-                <p> {post.author} </p>
+                <p> Written by: {post.author} </p>
             </div>
 
         ))}
