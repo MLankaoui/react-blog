@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BlogList from './BlogList';
 
 export default function Home() {
@@ -9,14 +9,15 @@ export default function Home() {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Marouane', id: 3 }
     ]
     const [blogs, setBlogs] = useState(blogpost);
+
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter(blog => blog.id !== id)
+        setBlogs(newBlogs)
+    }
     return (
         <div className='home'>
-            <h1> Home Page </h1>
-            <br />
-            <br />
-            <br />
-            <BlogList data={blogs} title="All blogs!" />
-            <BlogList data={blogs.filter((blog) => {return blog.author === "Marouane"})} title="Marouane's blogs" />
+            <BlogList data={blogs} title="All blogs!" handleDelete={handleDelete} />
+            {/* <BlogList data={blogs.filter((blog) => {return blog.author === "Marouane"})} title="Marouane's blogs" /> */}
         </div>
     );
 }
