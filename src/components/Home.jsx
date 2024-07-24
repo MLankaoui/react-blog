@@ -10,6 +10,9 @@ export default function Home() {
     ]
     const [blogs, setBlogs] = useState(blogpost);
 
+    useEffect(() => {
+        console.log("page refereshed");
+    }, []);
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id !== id)
         setBlogs(newBlogs)
