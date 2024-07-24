@@ -3,23 +3,26 @@ import BlogList from './BlogList';
 
 export default function Home() {
     // some dummy data
-    const blogpost = [
-        { title: 'My new website', body: 'lorem ipsum...', author: 'Marouane', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'Fatima', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Marouane', id: 3 }
-    ]
-    const [blogs, setBlogs] = useState(blogpost);
+    const [blogs, setBlogs] = useState(null);
 
-    useEffect(() => {
-        console.log("page refereshed");
-    }, []);
+    
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id !== id)
         setBlogs(newBlogs)
     }
+
+    useEffect(() => {
+        // fetching data
+        // promise
+        fetch("http://localhost:8000/blogs/").then(res => {
+            return res.json();
+        }).then(data => {
+            setBlogs(data);
+        })
+    }, []);
     return (
         <div className='home'>
-            <BlogList data={blogs} title="All blogs!" handleDelete={handleDelete} />
+            {blogs && <BlogList data={blogs} title="All blogs!" handleDelete={handleDelete} />}
             {/* <BlogList data={blogs.filter((blog) => {return blog.author === "Marouane"})} title="Marouane's blogs" /> */}
         </div>
     );
